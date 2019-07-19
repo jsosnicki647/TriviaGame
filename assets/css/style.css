@@ -1,0 +1,47 @@
+.container{
+    margin-top: 10vh;
+    height: 65vh;
+    width: 90vh;
+    background: white;
+    background-image: url(../../assets/images/burgers.jpg);
+    padding: 0;
+}
+
+#start{
+    font-size: 1.75em;
+    width: 8em;
+    color: white;
+    background: #6F7072
+}
+
+#game-window{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+  
+}
+
+#title{
+    margin-bottom: 20%;
+    margin-top: .75em;
+    margin-left:0;
+    margin-right:0;
+    background: #E9F3BE;
+    color: #61A2E1;
+}
+
+body{
+    background-image: url(../../assets/images/background.jpg);
+    background-size: cover; 
+    background-repeat: no-repeat;
+    min-height: 100vh
+}
+
+
+@media only screen and (max-height: 300px) {
+  h1{
+      margin:5%;
+  }
+
+}
