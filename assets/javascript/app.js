@@ -9,6 +9,12 @@ var game = {
         o: ["Leatherwork", "'Pissing Contests' with Jimmy Pesto", "Working at his dad's diner","Photography"],
         a: 0,
         isCorrect: false
+    },
+    {
+        q: "What is the wealthy island a ferry-ride away from where the Belchers live?",
+        o: ["Royal Island", "Kings Head Island", "Ruby Road Island","Isle of Rich"],
+        a: 1,
+        isCorrect: false
     }],
     start: function(){
         $("#timer").html("<h2>Time Remaining: " + game.timeRemaining + "</h2>")
@@ -20,6 +26,7 @@ var game = {
         game.showQuestion()
     },
     showQuestion: function(){
+        console.log(game.questions[game.currQuestion].q)
         $("#question").html("<h2>" + game.questions[game.currQuestion].q + "</h2>")
         
         for(i = 0; i < game.questions[game.currQuestion].o.length; i++){
@@ -29,9 +36,13 @@ var game = {
         }
     },
     checkAnswer: function(e){
-        console.log("FEFE")
         if(e == game.questions[game.currQuestion].a){
             game.numCorrect++
+            game.isCorrect = true
+        }
+        game.currQuestion++
+        if(game.currQuestion < game.questions.length){
+            game.showQuestion()
         }
     },
 
@@ -42,8 +53,8 @@ var game = {
         if(game.timeRemaining == 0){
             clearInterval(game.intervalID)
         }
-        if(game.timeRemaining < 10){
-            $("#timer").css("color","red")
+        if(game.timeRemaining < 30){
+            $("#timer").css("color","#C13B3A")
         }
     },
     timeConverter: function(t){
