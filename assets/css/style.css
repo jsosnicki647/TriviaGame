@@ -8,7 +8,8 @@
 #game-window{
   align-items: center;
   justify-content: center;
-  overflow: auto;
+  min-height: 75%;
+  overflow: auto:
   
 }
 
@@ -36,8 +37,8 @@
 }
 
 .container{
-    margin-top: 10vh;
-    height: 65vh;
+    margin-top: 1%;
+    height: 90vh;
     width: 90vh;
     background-image: url(../../assets/images/burgers.jpg);
     padding: 0;

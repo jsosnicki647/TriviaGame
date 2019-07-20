@@ -99,11 +99,59 @@ var game = {
     },
     gameOver: function(){
         $("#game-window").html("<h2>Game Over</h2>")
+        var tr = $("<tr>")
+        var tbody = $("<tbody>")
+        var table = $("<table>")
+        var thead = $("<thead>")
+        var th = $("<th>")
+        th.text("Question")
+        tr.append(th)
+        var th = $("<th>")
+        th.text("Result")
+        tr.append(th)
+        thead.append(tr)
+        table.append(thead)
+
+
         for(i = 0; i < game.questions.length; i++){
-            var result = $("<div>")
-            $(result).text("Question " + i + ": " + game.questions[i].isCorrect)
-            $("#game-window").append(result)
+            var tr = $("<tr>")
+            var result = $("<td>")
+            result.text(i + 1)
+            tr.append(result)
+            var result = $("<td>")
+            result.text(game.questions[i].isCorrect)
+            tr.append(result)
+            table.append(tr)
         }
+        var tr = $("<tr>")
+        var td = $("<td>")
+        td.text("Score:")
+        tr.append(td)
+        var td = $("<td>")
+        td.text(game.numCorrect * 10 + "%")
+        tr.append(td)
+        table.append(tr)
+        
+
+        table.addClass("table table-dark")
+        $("#game-window").append(table)
+        table.css("margin-top", "5%")
+        table.css("margin-left", "5%")
+        table.css("margin-right", "5%")
+        table.css("width", "50%")
+        table.css("margin","auto")
+        table.css("background", "#4F8CD1")
+        var div = $("<div>")
+        if (game.numCorrect > 7){
+            div.html("<h2>Good job! Keep watching Bob's!</h2>")
+        }
+        else if(game.numCorrect >5){
+            div.html("<h2>Average. Try watching more Bob's.</h2>")
+        }
+        else{
+            div.html("<h2>Do you even watch Bob's?!</h2>")
+        }
+        $("#game-window").append(div)
     },
     flash: function(){
         $("#timer").css("color","#C13B3A")
@@ -123,7 +171,7 @@ var game = {
         game.timeRemaining--
         var converted = game.timeConverter(game.timeRemaining)
         $("#timer").html("<h2>Time Remaining: " + game.timeRemaining + "</h2>")
-
+        var intervalID
         if(game.timeRemaining == 0){
             clearInterval(game.intervalID)
             game.gameOver()
