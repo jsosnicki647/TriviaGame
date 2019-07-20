@@ -15,7 +15,7 @@ var game = {
         $("#start").css("display","none")
         $("#title").css("margin-bottom","5%")
         $("#game-window").css("height","65%")
-        $("#game-window").css("background","#6C757D")
+        $("#game-window").css("background","#A1A6AA")
         game.intervalID = setInterval(game.count, 1000)
         game.showQuestion()
     },
@@ -43,6 +43,9 @@ var game = {
         $("#timer").html("<h2>Time Remaining: " + game.timeRemaining + "</h2>")
         if(game.timeRemaining == 0){
             clearInterval(game.intervalID)
+        }
+        if(game.timeConverter < 29){
+            $("#timer").css("color","red")
         }
     },
     timeConverter: function(t){
