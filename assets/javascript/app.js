@@ -15,6 +15,54 @@ var game = {
         o: ["Royal Island", "Kings Head Island", "Ruby Road Island","Isle of Rich"],
         a: 1,
         isCorrect: false
+    },
+    {
+        q: "What kind of business is next door to Bob's Burgers and comes into the spotlight a bit during this first episode?",
+        o: ["Funeral Home", "Rival Burger Restaurant", "Prosthetics Clinic","Locksmith"],
+        a: 0,
+        isCorrect: false
+    },
+    {
+        q: "Which of these is NOT one of Bob and Linda's children?",
+        o: ["Louise", "Gene", "Henry","Tina"],
+        a: 2,
+        isCorrect: false
+    },
+    {
+        q: "When did 'Bob's Burgers' first air?",
+        o: ["2009", "2010", "2011","2012"],
+        a: 2,
+        isCorrect: false
+    },
+    {
+        q: "What holidy is Bob obsessed with?",
+        o: ["Thanksgiving", "Christmas", "Memorial Day","Halloween"],
+        a: 0,
+        isCorrect: false
+    },
+    {
+        q: "What is the name of Linda's sister?",
+        o: ["Gretchen", "Gayle", "Lauren","Julia"],
+        a: 1,
+        isCorrect: false
+    },
+    {
+        q: "Which of these characters is not a Pesto child?",
+        o: ["Andy", "Jimmy Jr", "Ollie","Tammy"],
+        a: 3,
+        isCorrect: false
+    },
+     {
+        q: "What is the name of the school the Belcher Children attend?",
+        o: ["Huxley", "Wagstaff", "Schooner","Glencrest"],
+        a: 1,
+        isCorrect: false
+    },
+    {
+        q: "How do Linda and Hugo, the health inspector, know each other?",
+        o: ["They are cousins", "They go to the same YMCA", "They met during a wild night in Las Vegas","They were engaged"],
+        a: 3,
+        isCorrect: false
     }],
     start: function(){
         $("#timer").html("<h2>Time Remaining: " + game.timeRemaining + "</h2>")
