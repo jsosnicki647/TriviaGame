@@ -53,7 +53,7 @@ var game = {
         if(game.timeRemaining == 0){
             clearInterval(game.intervalID)
         }
-        if(game.timeRemaining < 30){
+        if(game.timeRemaining < 10){
             $("#timer").css("color","#C13B3A")
         }
     },

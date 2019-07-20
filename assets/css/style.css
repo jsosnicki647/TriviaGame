@@ -3,17 +3,13 @@
 #start{
     font-size: 1.75em;
     width: 8em;
-    /* color: white;
-    background: #6F7072 */
-    
 }
 
 #game-window{
-  /* display: flex; */
   align-items: center;
   justify-content: center;
   overflow: auto;
-
+  
 }
 
 #title{
@@ -31,6 +27,8 @@
 
 #question{
     color: #F3DF23;
+    padding-left: 5%;
+    padding-right: 5%;
 }
 
 #timer, #options{
@@ -43,6 +41,8 @@
     width: 90vh;
     background-image: url(../../assets/images/burgers.jpg);
     padding: 0;
+    min-width: 900px;
+    min-height: 550px;
 }
 
 .option:hover{
