@@ -1,11 +1,4 @@
-.container{
-    margin-top: 10vh;
-    height: 65vh;
-    width: 90vh;
-    background: white;
-    background-image: url(../../assets/images/burgers.jpg);
-    padding: 0;
-}
+
 
 #start{
     font-size: 1.75em;
@@ -36,8 +29,25 @@
     text-decoration: underline;
 }
 
-#timer{
+#question{
+    color: #F3DF23;
+}
+
+#timer, #options{
     color:  #EFF0F1;
+}
+
+.container{
+    margin-top: 10vh;
+    height: 65vh;
+    width: 90vh;
+    background: white;
+    background-image: url(../../assets/images/burgers.jpg);
+    padding: 0;
+}
+
+.option:hover{
+    color:  #5791DB;
 }
 
 body{

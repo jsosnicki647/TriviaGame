@@ -2,6 +2,14 @@ var game = {
 
     timeRemaining: 30,
     intervalID: 0,
+    currQuestion: 0,
+    numCorrect: 0,
+    questions: [{
+        q: "According to episode 'Two for Tina', what did Bob enjoy doing as a child?",
+        o: ["Leatherwork", "'Pissing Contests' with Jimmy Pesto", "Working at his dad's diner","Photography"],
+        a: 0,
+        isCorrect: false
+    }],
     start: function(){
         $("#timer").html("<h2>Time Remaining: " + game.timeRemaining + "</h2>")
         $("#start").css("display","none")
@@ -9,7 +17,26 @@ var game = {
         $("#game-window").css("height","65%")
         $("#game-window").css("background","#6C757D")
         game.intervalID = setInterval(game.count, 1000)
+        game.showQuestion()
     },
+    showQuestion: function(){
+        $("#question").html("<h2>" + game.questions[game.currQuestion].q + "</h2>")
+        
+        for(i = 0; i < game.questions[game.currQuestion].o.length; i++){
+            var option = $("<div>")
+            $(option).html("<h2>" + game.questions[game.currQuestion].o[i] + "</h2>")
+            $(option).addClass("option")
+            $(option).attr("id",i)
+            $("#options").append(option)
+        }
+    },
+    checkAnswer: function(e){
+        console.log("FEFE")
+        if(e == game.questions[game.currQuestion].a){
+            game.numCorrect++
+        }
+    },
+
     count: function(){
         game.timeRemaining--
         var converted = game.timeConverter(game.timeRemaining)
@@ -38,10 +65,13 @@ var game = {
 
 
 
-window.onload = function(){
+$(document).ready(function(){
     $("#start").on("click", game.start)
-}
-
+    $(".option").on("click",function(e){
+        console.log("hi")
+    })
+    
+})
 
 
 
