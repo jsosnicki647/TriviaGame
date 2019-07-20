@@ -10,8 +10,8 @@
 #start{
     font-size: 1.75em;
     width: 8em;
-    color: white;
-    background: #6F7072
+    /* color: white;
+    background: #6F7072 */
 }
 
 #game-window{
@@ -19,12 +19,12 @@
   align-items: center;
   justify-content: center;
   overflow: auto;
-  
 }
 
 #title{
     margin-bottom: 20%;
-    margin-top: .75em;
+    padding-top: .5em;
+    padding-bottom: .5em;
     margin-left:0;
     margin-right:0;
     background: #E9F3BE;
@@ -40,7 +40,7 @@ body{
 
 
 @media only screen and (max-height: 300px) {
-  h1{
+  #title{
       margin:5%;
   }
 
