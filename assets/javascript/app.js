@@ -78,19 +78,25 @@ var game = {
         $("#question").html("<h2>" + game.questions[game.currQuestion].q + "</h2>")
         
         for(i = 0; i < game.questions[game.currQuestion].o.length; i++){
-            
             $("#" + i).html("<h2>" + game.questions[game.currQuestion].o[i] + "</h2>")
-        
         }
     },
     checkAnswer: function(e){
         if(e == game.questions[game.currQuestion].a){
             game.numCorrect++
-            game.isCorrect = true
+            game.questions[game.currQuestion].isCorrect = true
         }
         game.currQuestion++
         if(game.currQuestion < game.questions.length){
             game.showQuestion()
+        }
+        else{
+            $("#game-window").html("<h2>Game Over</h2>")
+            for(i = 0; i < game.questions.length; i++){
+                var result = $("<div>")
+                $(result).text("Question " + i + ": " + game.questions[i].isCorrect)
+                $("#game-window").append(result)
+            }
         }
     },
 
@@ -123,12 +129,12 @@ var game = {
     }
 }
 
-
-
 $(document).ready(function(){
     $("#start").on("click", game.start)
     $(".option").on("click",function(){
-        game.checkAnswer(this.id)
+        if(game.timeRemaining != 0){
+            game.checkAnswer(this.id)
+        }
     })
     
 })
