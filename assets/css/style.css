@@ -12,23 +12,32 @@
     width: 8em;
     /* color: white;
     background: #6F7072 */
+    
 }
 
 #game-window{
-  display: flex;
+  /* display: flex; */
   align-items: center;
   justify-content: center;
   overflow: auto;
+
 }
 
 #title{
     margin-bottom: 20%;
-    padding-top: .5em;
-    padding-bottom: .5em;
+    padding-top: .2em;
+    padding-bottom: .2em;
     margin-left:0;
     margin-right:0;
-    background: #E9F3BE;
-    color: #61A2E1;
+    background: #F3DF23;
+    color: #C13B3A;
+    font-family: bobs;
+    font-size: 4.5em;
+    text-decoration: underline;
+}
+
+#timer{
+    color:  #EFF0F1;
 }
 
 body{
@@ -43,5 +52,9 @@ body{
   #title{
       margin:5%;
   }
+}
 
+@font-face {
+  font-family: bobs;
+  src: url(Bobs_Burgers.ttf);
 }
