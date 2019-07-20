@@ -23,11 +23,9 @@ var game = {
         $("#question").html("<h2>" + game.questions[game.currQuestion].q + "</h2>")
         
         for(i = 0; i < game.questions[game.currQuestion].o.length; i++){
-            var option = $("<div>")
-            $(option).html("<h2>" + game.questions[game.currQuestion].o[i] + "</h2>")
-            $(option).addClass("option")
-            $(option).attr("id",i)
-            $("#options").append(option)
+            
+            $("#" + i).html("<h2>" + game.questions[game.currQuestion].o[i] + "</h2>")
+        
         }
     },
     checkAnswer: function(e){
@@ -44,7 +42,7 @@ var game = {
         if(game.timeRemaining == 0){
             clearInterval(game.intervalID)
         }
-        if(game.timeConverter < 29){
+        if(game.timeRemaining < 10){
             $("#timer").css("color","red")
         }
     },
@@ -70,8 +68,8 @@ var game = {
 
 $(document).ready(function(){
     $("#start").on("click", game.start)
-    $(".option").on("click",function(e){
-        console.log("hi")
+    $(".option").on("click",function(){
+        game.checkAnswer(this.id)
     })
     
 })
