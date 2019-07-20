@@ -8,61 +8,61 @@ var game = {
         q: "According to episode 'Two for Tina', what did Bob enjoy doing as a child?",
         o: ["Leatherwork", "'Pissing Contests' with Jimmy Pesto", "Working at his dad's diner","Photography"],
         a: 0,
-        isCorrect: false
+        isCorrect: "unanswered : |"
     },
     {
         q: "What is the wealthy island a ferry-ride away from where the Belchers live?",
         o: ["Royal Island", "Kings Head Island", "Ruby Road Island","Isle of Rich"],
         a: 1,
-        isCorrect: false
+        isCorrect: "unanswered : |"
     },
     {
         q: "What kind of business is next door to Bob's Burgers and comes into the spotlight a bit during this first episode?",
         o: ["Funeral Home", "Rival Burger Restaurant", "Prosthetics Clinic","Locksmith"],
         a: 0,
-        isCorrect: false
+        isCorrect: "unanswered : |"
     },
     {
         q: "Which of these is NOT one of Bob and Linda's children?",
         o: ["Louise", "Gene", "Henry","Tina"],
         a: 2,
-        isCorrect: false
+        isCorrect: "unanswered : |"
     },
     {
         q: "When did 'Bob's Burgers' first air?",
         o: ["2009", "2010", "2011","2012"],
         a: 2,
-        isCorrect: false
+        isCorrect: "unanswered : |"
     },
     {
         q: "What holidy is Bob obsessed with?",
         o: ["Thanksgiving", "Christmas", "Memorial Day","Halloween"],
         a: 0,
-        isCorrect: false
+        isCorrect: "unanswered : |"
     },
     {
         q: "What is the name of Linda's sister?",
         o: ["Gretchen", "Gayle", "Lauren","Julia"],
         a: 1,
-        isCorrect: false
+        isCorrect: "unanswered : |"
     },
     {
         q: "Which of these characters is not a Pesto child?",
         o: ["Andy", "Jimmy Jr", "Ollie","Tammy"],
         a: 3,
-        isCorrect: false
+        isCorrect: "unanswered : |"
     },
      {
         q: "What is the name of the school the Belcher Children attend?",
         o: ["Huxley", "Wagstaff", "Schooner","Glencrest"],
         a: 1,
-        isCorrect: false
+        isCorrect: "unanswered : |"
     },
     {
         q: "How do Linda and Hugo, the health inspector, know each other?",
         o: ["They are cousins", "They go to the same YMCA", "They met during a wild night in Las Vegas","They were engaged"],
         a: 3,
-        isCorrect: false
+        isCorrect: "unanswered : |"
     }],
     start: function(){
         $("#timer").html("<h2>Time Remaining: " + game.timeRemaining + "</h2>")
@@ -84,31 +84,54 @@ var game = {
     checkAnswer: function(e){
         if(e == game.questions[game.currQuestion].a){
             game.numCorrect++
-            game.questions[game.currQuestion].isCorrect = true
+            game.questions[game.currQuestion].isCorrect = "correct :)"
+        }
+        else{
+            game.questions[game.currQuestion].isCorrect = "incorrect :("
         }
         game.currQuestion++
         if(game.currQuestion < game.questions.length){
             game.showQuestion()
         }
         else{
-            $("#game-window").html("<h2>Game Over</h2>")
-            for(i = 0; i < game.questions.length; i++){
-                var result = $("<div>")
-                $(result).text("Question " + i + ": " + game.questions[i].isCorrect)
-                $("#game-window").append(result)
-            }
+            game.gameOver()
         }
     },
+    gameOver: function(){
+        $("#game-window").html("<h2>Game Over</h2>")
+        for(i = 0; i < game.questions.length; i++){
+            var result = $("<div>")
+            $(result).text("Question " + i + ": " + game.questions[i].isCorrect)
+            $("#game-window").append(result)
+        }
+    },
+    flash: function(){
+        $("#timer").css("color","#C13B3A")
+            console.log("red")
+        setTimeout(function(){
+            $("#timer").css("color","white")
+            console.log("white")
+        },500)
+        
+            
+        
+    },
+    
+    
 
     count: function(){
         game.timeRemaining--
         var converted = game.timeConverter(game.timeRemaining)
         $("#timer").html("<h2>Time Remaining: " + game.timeRemaining + "</h2>")
+
         if(game.timeRemaining == 0){
             clearInterval(game.intervalID)
+            game.gameOver()
         }
-        if(game.timeRemaining < 10){
-            $("#timer").css("color","#C13B3A")
+
+        
+        if(game.timeRemaining == 10){
+            setInterval(game.flash, 1000)
         }
     },
     timeConverter: function(t){
