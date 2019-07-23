@@ -1,68 +1,67 @@
 var game = {
-
-    timeRemaining: 30,
-    intervalID: 0,
-    currQuestion: 0,
-    numCorrect: 0,
-    questions: [{
+    timeRemaining: 30, //time left before game ends
+    intervalID: 0, //ID for countdown
+    currQuestion: 0, //index of the current question
+    numCorrect: 0, //number of correctly answered questions
+    questions: [{ //stores questions for the game - q: question; o: option; a: index of correct answer; isCorrect: stores if answer given was correct
         q: "According to episode 'Two for Tina', what did Bob enjoy doing as a child?",
         o: ["Leatherwork", "'Pissing Contests' with Jimmy Pesto", "Working at his dad's diner","Photography"],
         a: 0,
-        isCorrect: "unanswered : |"
+        isCorrect: "unanswered"
     },
     {
         q: "What is the wealthy island a ferry-ride away from where the Belchers live?",
         o: ["Royal Island", "Kings Head Island", "Ruby Road Island","Isle of Rich"],
         a: 1,
-        isCorrect: "unanswered : |"
+        isCorrect: "unanswered"
     },
     {
         q: "What kind of business is next door to Bob's Burgers and comes into the spotlight a bit during this first episode?",
         o: ["Funeral Home", "Rival Burger Restaurant", "Prosthetics Clinic","Locksmith"],
         a: 0,
-        isCorrect: "unanswered : |"
+        isCorrect: "unanswered"
     },
     {
         q: "Which of these is NOT one of Bob and Linda's children?",
         o: ["Louise", "Gene", "Henry","Tina"],
         a: 2,
-        isCorrect: "unanswered : |"
+        isCorrect: "unanswered"
     },
     {
         q: "When did 'Bob's Burgers' first air?",
         o: ["2009", "2010", "2011","2012"],
         a: 2,
-        isCorrect: "unanswered : |"
+        isCorrect: "unanswered"
     },
     {
         q: "What holidy is Bob obsessed with?",
         o: ["Thanksgiving", "Christmas", "Memorial Day","Halloween"],
         a: 0,
-        isCorrect: "unanswered : |"
+        isCorrect: "unanswered"
     },
     {
         q: "What is the name of Linda's sister?",
         o: ["Gretchen", "Gayle", "Lauren","Julia"],
         a: 1,
-        isCorrect: "unanswered : |"
+        isCorrect: "unanswered"
     },
     {
         q: "Which of these characters is not a Pesto child?",
         o: ["Andy", "Jimmy Jr", "Ollie","Tammy"],
         a: 3,
-        isCorrect: "unanswered : |"
+        isCorrect: "unanswered"
     },
      {
         q: "What is the name of the school the Belcher Children attend?",
         o: ["Huxley", "Wagstaff", "Schooner","Glencrest"],
         a: 1,
-        isCorrect: "unanswered : |"
+        isCorrect: "unanswered"
     },
     {
         q: "How do Linda and Hugo, the health inspector, know each other?",
         o: ["They are cousins", "They go to the same YMCA", "They met during a wild night in Las Vegas","They were engaged"],
         a: 3,
-        isCorrect: "unanswered : |"
+        isCorrect: "unanswered"
     }],
     start: function(){
         $("#timer").html("<h2>Time Remaining: " + game.timeRemaining + "</h2>")
@@ -84,13 +83,15 @@ var game = {
     checkAnswer: function(e){
         if(e == game.questions[game.currQuestion].a){
             game.numCorrect++
-            game.questions[game.currQuestion].isCorrect = "correct :)"
+            game.questions[game.currQuestion].isCorrect = true
         }
         else{
-            game.questions[game.currQuestion].isCorrect = "incorrect :("
+            game.questions[game.currQuestion].isCorrect = false
         }
+
         game.currQuestion++
-        if(game.currQuestion < game.questions.length){
+
+        if(game.currQuestion < game.questions.length){//shows next question only if there is time remaining
             game.showQuestion()
         }
         else{
@@ -112,17 +113,27 @@ var game = {
         thead.append(tr)
         table.append(thead)
 
-
-        for(i = 0; i < game.questions.length; i++){
+        for(i = 0; i < game.questions.length; i++){//creates the results table
             var tr = $("<tr>")
             var result = $("<td>")
             result.text(i + 1)
             tr.append(result)
             var result = $("<td>")
-            result.text(game.questions[i].isCorrect)
+
+            if (game.questions[i].isCorrect == "unanswered"){
+                result.text(game.questions[i].isCorrect)
+            }
+            else if(game.questions[i].isCorrect){
+                result.html("<img src='assets/images/check.jpg'>")
+            }
+            else{
+                result.html("<img src='assets/images/x.jpg'>")
+            }
+            
             tr.append(result)
             table.append(tr)
         }
+
         var tr = $("<tr>")
         var td = $("<td>")
         td.text("Score:")
@@ -131,7 +142,6 @@ var game = {
         td.text(game.numCorrect * 10 + "%")
         tr.append(td)
         table.append(tr)
-        
 
         table.addClass("table table-dark")
         $("#game-window").append(table)
@@ -142,6 +152,7 @@ var game = {
         table.css("margin","auto")
         table.css("background", "#4F8CD1")
         var div = $("<div>")
+
         if (game.numCorrect > 7){
             div.html("<h2>Good job! Keep watching Bob's!</h2>")
         }
@@ -151,53 +162,31 @@ var game = {
         else{
             div.html("<h2>Do you even watch Bob's?!</h2>")
         }
+
         $("#game-window").append(div)
     },
-    flash: function(){
+    flash: function(){//flashes timer when there is less than 10 seconds
         $("#timer").css("color","#C13B3A")
             console.log("red")
         setTimeout(function(){
             $("#timer").css("color","white")
             console.log("white")
         },500)
-        
-            
-        
     },
-    
-    
-
-    count: function(){
+    count: function(){//counts timer down
         game.timeRemaining--
-        var converted = game.timeConverter(game.timeRemaining)
         $("#timer").html("<h2>Time Remaining: " + game.timeRemaining + "</h2>")
         var intervalID
-        if(game.timeRemaining == 0){
+
+        if(game.timeRemaining == 0){//ends game if no time remaining
             clearInterval(game.intervalID)
             game.gameOver()
         }
-
         
-        if(game.timeRemaining == 10){
+        if(game.timeRemaining == 10){//begins flashing timer if 10 seconds left
             setInterval(game.flash, 1000)
         }
     },
-    timeConverter: function(t){
-        var minutes = Math.floor(t / 60)
-        var seconds = t - (minutes * 60)
-
-        if (seconds < 10) {
-            seconds = "0" + seconds
-        }
-
-        if (minutes === 0) {
-            minutes = "00"
-        }
-        else if (minutes < 10) {
-            minutes = "0" + minutes
-        }
-        return minutes + ":" + seconds
-    }
 }
 
 $(document).ready(function(){
@@ -209,8 +198,3 @@ $(document).ready(function(){
     })
     
 })
-
-
-
-
-
