@@ -67,7 +67,7 @@ var game = {
         $("#timer").html("<h2>Time Remaining: " + game.timeRemaining + "</h2>")
         $("#start").css("display","none")
         $("#title").css("margin-bottom","5%")
-        $("#game-window").css("height","65%")
+        // $("#game-window").css("height","65%")
         $("#game-window").css("background","#A1A6AA")
         game.intervalID = setInterval(game.count, 1000)
         game.showQuestion()
