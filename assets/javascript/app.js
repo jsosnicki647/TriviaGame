@@ -1,4 +1,5 @@
 var game = {
+    playAgain: $("<button>"),
     timeRemaining: 30, //time left before game ends
     intervalID: 0, //ID for countdown
     currQuestion: 0, //index of the current question
@@ -175,6 +176,10 @@ var game = {
         }
 
         $("#game-window").append(div)
+        game.playAgain.html("Play Again?")
+        game.playAgain.attr("id", "play-again")
+        game.playAgain.attr("onClick","window.location.reload()")
+        div.append(game.playAgain)
     },
     flash: function(){//flashes timer when there is less than 10 seconds
         $("#timer").css("color","#C13B3A")
@@ -204,6 +209,9 @@ $(document).ready(function(){
         if(game.timeRemaining != 0){
             game.checkAnswer(this.id)
         }
+    })
+    $("#play-again").on("click",function(){
+        window.location.reload(true)
     })
     
 })
