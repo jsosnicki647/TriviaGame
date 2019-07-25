@@ -67,13 +67,12 @@ var game = {
         $("#timer").html("<h2>Time Remaining: " + game.timeRemaining + "</h2>")
         $("#start").css("display","none")
         $("#title").css("margin-bottom","5%")
-        // $("#game-window").css("height","65%")
         $("#game-window").css("background","#A1A6AA")
         game.intervalID = setInterval(game.count, 1000)
         game.showQuestion()
     },
     showQuestion: function(){
-        console.log(game.questions[game.currQuestion].q)
+        $("#question").css("color","white")
         $("#question").html("<h2>" + game.questions[game.currQuestion].q + "</h2>")
         
         for(i = 0; i < game.questions[game.currQuestion].o.length; i++){
@@ -89,10 +88,24 @@ var game = {
             game.questions[game.currQuestion].isCorrect = false
         }
 
-        game.currQuestion++
-
         if(game.currQuestion < game.questions.length){//shows next question only if there is time remaining
-            game.showQuestion()
+            if(game.questions[game.currQuestion].isCorrect){
+                $("#question").html("<h2>Yay!</h2>")
+                $("#question").css("color","#E9F3BE")
+            }
+            else{
+                $("#question").html("<h2>Nay!</h2>")
+                $("#question").css("color","#C13B3A")
+            }
+
+            game.currQuestion++
+
+            if(game.currQuestion == game.questions.length){
+                setTimeout(function(){game.gameOver()},500)
+            }
+            else{
+                setTimeout(function(){game.showQuestion()},500)
+            }
         }
         else{
             game.gameOver()
@@ -129,7 +142,6 @@ var game = {
             else{
                 result.html("<img src='assets/images/x.jpg'>")
             }
-            
             tr.append(result)
             table.append(tr)
         }
@@ -142,7 +154,6 @@ var game = {
         td.text(game.numCorrect * 10 + "%")
         tr.append(td)
         table.append(tr)
-
         table.addClass("table table-dark")
         $("#game-window").append(table)
         table.css("margin-top", "5%")
@@ -167,10 +178,8 @@ var game = {
     },
     flash: function(){//flashes timer when there is less than 10 seconds
         $("#timer").css("color","#C13B3A")
-            console.log("red")
         setTimeout(function(){
             $("#timer").css("color","white")
-            console.log("white")
         },500)
     },
     count: function(){//counts timer down
