@@ -4,4 +4,4 @@
 
 Technologies: JavaScript, JQuery, Bootstrap
 
-Answer the Bob's Burgers trivia questions in less than 30 seconds. Score card is presented after all 10 questions or answered or when time runs out.
+Answer the Bob's Burgers trivia questions in less than 30 seconds. Score card is presented after all 10 questions are answered or when time runs out.
