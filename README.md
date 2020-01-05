@@ -5,3 +5,5 @@
 Technologies: JavaScript, JQuery, Bootstrap
 
 Answer the Bob's Burgers trivia questions in less than 30 seconds. Score card is presented after all 10 questions are answered or when time runs out.
+
+deployed site: https://jsosnicki647.github.io/TriviaGame/
